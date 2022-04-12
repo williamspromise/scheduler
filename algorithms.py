@@ -111,6 +111,30 @@ def edd(data):
     return sortedTasks
     
 
+# cyclic executive
+def ce(data):
+    # at -> deadline , bt -> worst computation time
+    unsortedTasks = data.copy()
+    sortedTasks = []
+    processed = 0
+    curr_time = 0
+    for i in range(len(unsortedTasks)):
+        bestTask = unsortedTasks[list(unsortedTasks.keys())[0]]
+        bestTask["st"] = curr_time
+        curr_time += bestTask['bt']
+        bestTask["ct"] = curr_time
+        bestTask["latness"] =  bestTask["at"] - curr_time
+        sortedTasks.append(bestTask)
+        #del unsortedTasks[str(bestTask["id"])]
+    for i in range(len(unsortedTasks)):
+        bestTask = unsortedTasks[list(unsortedTasks.keys())[0]]
+        bestTask["st"] = curr_time
+        curr_time += bestTask['bt']
+        bestTask["ct"] = curr_time
+        bestTask["latness"] =  bestTask["at"] - curr_time
+        sortedTasks.append(bestTask)
+    return sortedTasks
+    
 def shortest_remaining_time(data):
     def find_min_rt_arrived(curr_time, lst):
         lst.sort(key=lambda x: x[1])
