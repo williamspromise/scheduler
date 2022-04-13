@@ -1,15 +1,23 @@
 from tkinter import *
+from algorithms import drawGantt
 import connector
 import pandas as pd
 import matplotlib.pyplot as plt
+with open('fl.txt','r') as txt:
+    txt = int(txt.read())
 
 def gchart(data):
-    data = pd.DataFrame(data)
-    plt.barh(y=data["id"], left=data["st"], width=data["ct"])
-    plt.xlabel("time")
-    plt.ylabel("process")
-    plt.title("grant chart")
-    plt.show()
+    
+    
+    if txt == 4:
+        drawGantt()
+    else:
+        data = pd.DataFrame(data)
+        plt.barh(y=data["id"], left=data["st"], width=data["ct"])
+        plt.xlabel("time")
+        plt.ylabel("process")
+        plt.title("grant chart")
+        plt.show()
     
 
 
@@ -26,26 +34,27 @@ def main():
     f1 = Frame(root, height=10, width=10, bd=4, relief="flat")
     f1.grid(row=6)
     av, fesible = connector.main()
+    print(av)
     av_fes = " Feasible = {}".format(fesible)
     Label(f1, font=('arial', 15, 'bold'),
           text=av_fes, bd=5).grid(row=0, column=0)
-
-    e = Entry(root, fg='blue',
-                               font=('Arial',16,'bold'))
-    
-    e.grid(row=7,columnspan=2, padx=10, pady=(10,4), sticky="nsew")
-    e.insert(END, "process")
-    for i in range(len(av)):
+    if txt != 4:
+        e = Entry(root, fg='blue',
+                                font=('Arial',16,'bold'))
+        
         e.grid(row=7,columnspan=2, padx=10, pady=(10,4), sticky="nsew")
-        e.insert(END, av[i]["id"])
-    
-    e = Entry(root, fg='red',
-                               font=('Arial',16,'bold'))
-    e.grid(row=8,columnspan=2, padx=10, pady=(10,4), sticky="nsew")
-    e.insert(END,"lateness")
-    for i in range(len(av)):
+        e.insert(END, "process")
+        for i in range(len(av)):
+            e.grid(row=7,columnspan=2, padx=10, pady=(10,4), sticky="nsew")
+            e.insert(END, av[i]["id"])
+        
+        e = Entry(root, fg='red',
+                                font=('Arial',16,'bold'))
         e.grid(row=8,columnspan=2, padx=10, pady=(10,4), sticky="nsew")
-        e.insert(END, av[i]["latness"])
+        e.insert(END,"lateness")
+        for i in range(len(av)):
+            e.grid(row=8,columnspan=2, padx=10, pady=(10,4), sticky="nsew")
+            e.insert(END, av[i]["latness"])
 
     f2 = Frame(root, height=10, width=100, bd=4, relief="flat")
     f2.grid(row=55)

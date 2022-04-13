@@ -1,0 +1,23 @@
+{
+    "0": {
+        "Releases": 1.0,
+        "Period": 30,
+        "WCET": 15,
+        "AvgRespTime": 27,
+        "AvgWaitTime": 4
+    },
+    "1": {
+        "Releases": 6.0,
+        "Period": 5,
+        "WCET": 1,
+        "AvgRespTime": 1,
+        "AvgWaitTime": 0
+    },
+    "2": {
+        "Releases": 2.0,
+        "Period": 15,
+        "WCET": 3,
+        "AvgRespTime": 4,
+        "AvgWaitTime": 1
+    }
+}

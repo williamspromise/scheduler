@@ -32,8 +32,9 @@ def sec_main():
         for i in range(0, len(buttons), 3):
             try:
                 dct['id'] = buttons[i][0].get()
-                dct['at'] = int(buttons[i+1][0].get())
-                dct['bt'] = int(buttons[i+2][0].get())
+                if txt == 4:
+                    dct['Period'] = int(buttons[i+1][0].get())
+                    dct['WCET'] = int(buttons[i+2][0].get())
                 if txt==2:
                     dct['dt'] = int(buttons[i+2][0].get())
             except:
@@ -75,18 +76,19 @@ def sec_main():
         if txt == 1:
             b = Label(newwin, text="DeadLine")
             b.grid(row=0, column=1)
+            column = 3
         else:
-            b = Label(newwin, text="Arrival Time")
-            b.grid(row=0, column=1)
-            b = Label(newwin, text="DeadLine")
+            if txt !=4:
+                b = Label(newwin, text="Arrival Time")
+                b.grid(row=0, column=1)
+                b = Label(newwin, text="DeadLine")
+                b.grid(row=0, column=1)
+        column = 3
+        if txt == 4:
+            b = Label(newwin, text="Period")
             b.grid(row=0, column=1)
         b = Label(newwin, text="worst-case computation Time")
         b.grid(row=0, column=2)
-        column = 3
-        if txt == 4 or txt == 5:
-            column = 4
-            b = Label(newwin, text="Priority")
-            b.grid(row=0, column=3)
         for i in range(1, processes+1):  # Rows
             for j in range(column):
                 tmp = [Entry(newwin, text=""), i, j]

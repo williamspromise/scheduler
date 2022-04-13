@@ -22,7 +22,7 @@ def main():
     else:
         print(txt,algos[txt])
         res = algos[txt](data)
-    avg,feasible = analyze(res)
+    avg,feasible = analyze(res,txt)
     data_f = open('data.json', 'w')
     data_f.write(json.dumps(res))
     data_f.close()
