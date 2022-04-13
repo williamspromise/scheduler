@@ -4,7 +4,12 @@
 - to run the project  `python3 cpu_sheduler.py`
 
 ## usage example for rate monotonic scheduling
+
+# choose the algorithm 
 <img src="maincs.png" width="800">
+
+# fill the inputs
+
 <img src="inputs.png" width="800">
 
 #  sample input 1 for rate monotonic
